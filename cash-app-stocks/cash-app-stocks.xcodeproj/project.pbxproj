@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		73C1489B2A2ED84C000A2CC6 /* cash_app_stocksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C1489A2A2ED84C000A2CC6 /* cash_app_stocksApp.swift */; };
-		73C1489D2A2ED84C000A2CC6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C1489C2A2ED84C000A2CC6 /* ContentView.swift */; };
+		73C1489D2A2ED84C000A2CC6 /* StockList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C1489C2A2ED84C000A2CC6 /* StockList.swift */; };
 		73C1489F2A2ED84C000A2CC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73C1489E2A2ED84C000A2CC6 /* Assets.xcassets */; };
 		73C148A22A2ED84C000A2CC6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 73C148A12A2ED84C000A2CC6 /* Preview Assets.xcassets */; };
 		73C148AC2A2ED84D000A2CC6 /* cash_app_stocksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C148AB2A2ED84D000A2CC6 /* cash_app_stocksTests.swift */; };
@@ -16,6 +16,7 @@
 		73C148B82A2ED84D000A2CC6 /* cash_app_stocksUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C148B72A2ED84D000A2CC6 /* cash_app_stocksUITestsLaunchTests.swift */; };
 		73C148C52A2F918E000A2CC6 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C148C42A2F918E000A2CC6 /* Stock.swift */; };
 		73C148C92A2F925F000A2CC6 /* StockRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C148C82A2F925F000A2CC6 /* StockRow.swift */; };
+		73C148CC2A2FA4B6000A2CC6 /* StockRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C148CB2A2FA4B6000A2CC6 /* StockRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,7 @@
 /* Begin PBXFileReference section */
 		73C148972A2ED84C000A2CC6 /* cash-app-stocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cash-app-stocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73C1489A2A2ED84C000A2CC6 /* cash_app_stocksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cash_app_stocksApp.swift; sourceTree = "<group>"; };
-		73C1489C2A2ED84C000A2CC6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		73C1489C2A2ED84C000A2CC6 /* StockList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockList.swift; sourceTree = "<group>"; };
 		73C1489E2A2ED84C000A2CC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		73C148A12A2ED84C000A2CC6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		73C148A72A2ED84D000A2CC6 /* cash-app-stocksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cash-app-stocksTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +49,7 @@
 		73C148B72A2ED84D000A2CC6 /* cash_app_stocksUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cash_app_stocksUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		73C148C42A2F918E000A2CC6 /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		73C148C82A2F925F000A2CC6 /* StockRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRow.swift; sourceTree = "<group>"; };
+		73C148CB2A2FA4B6000A2CC6 /* StockRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				73C1489A2A2ED84C000A2CC6 /* cash_app_stocksApp.swift */,
 				73C148C62A2F9221000A2CC6 /* Views */,
 				73C148C72A2F9229000A2CC6 /* Model */,
+				73C148CA2A2F9B07000A2CC6 /* Repositories */,
 				73C1489E2A2ED84C000A2CC6 /* Assets.xcassets */,
 				73C148A02A2ED84C000A2CC6 /* Preview Content */,
 			);
@@ -135,7 +138,7 @@
 		73C148C62A2F9221000A2CC6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				73C1489C2A2ED84C000A2CC6 /* ContentView.swift */,
+				73C1489C2A2ED84C000A2CC6 /* StockList.swift */,
 				73C148C82A2F925F000A2CC6 /* StockRow.swift */,
 			);
 			path = Views;
@@ -147,6 +150,14 @@
 				73C148C42A2F918E000A2CC6 /* Stock.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		73C148CA2A2F9B07000A2CC6 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				73C148CB2A2FA4B6000A2CC6 /* StockRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,7 +290,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73C1489D2A2ED84C000A2CC6 /* ContentView.swift in Sources */,
+				73C1489D2A2ED84C000A2CC6 /* StockList.swift in Sources */,
+				73C148CC2A2FA4B6000A2CC6 /* StockRepository.swift in Sources */,
 				73C148C92A2F925F000A2CC6 /* StockRow.swift in Sources */,
 				73C1489B2A2ED84C000A2CC6 /* cash_app_stocksApp.swift in Sources */,
 				73C148C52A2F918E000A2CC6 /* Stock.swift in Sources */,

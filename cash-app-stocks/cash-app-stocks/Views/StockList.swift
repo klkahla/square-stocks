@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StockList: View {
-    var stocks: [Stock] = []
+    @State var stocks: [Stock] = []
     var body: some View {
         // TODO:
         // 1. Stock list
@@ -21,6 +21,17 @@ struct StockList: View {
         
         Text("Stocks")
             .font(.title)
+            .onAppear() {
+                Task {
+                    do {
+                        
+                        self.stocks = try await Api().fetchStocksFromAPI()
+                        print(stocks)
+                    } catch {
+                        print (error)
+                    }
+                }
+            }
         List(stocks) { stock in
             StockRow(stock: stock)
         }
