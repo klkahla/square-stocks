@@ -9,19 +9,17 @@ import Foundation
 import Combine
 
 protocol StockRepository {
-    func loadStocks() async throws -> [Stock]
+    func loadStocks(completion: @escaping(Result<[Stock]?, NetworkError>) -> Void) async
 }
 
 class DefaultStockRepository: StockRepository {
-    func loadStocks() async throws -> [Stock] {
-        let url = URL(string: "https://storage.googleapis.com/cash-homework/cash-stocks-api/portfolio.json")!
-        
-        let (data, _) = try await URLSession.shared.data(from: url)
-        
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        let decoded = try decoder.decode(StockResponse.self, from: data)
-        
-        return decoded.stocks
+    let apiService: ApiService
+    
+    init(apiService: ApiService) {
+        self.apiService = apiService
+    }
+    
+    func loadStocks(completion: @escaping(Result<[Stock]?, NetworkError>) -> Void) async {
+        return await apiService.getStocks(completion: completion)
     }
 }
