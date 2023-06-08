@@ -21,8 +21,19 @@ struct StockList: View {
         
         Text("Stocks")
             .font(.title)
-        List(viewModel.stocks, id:\.symbol) { stockViewModel in
-            StockRow(stockViewModel: stockViewModel)
+        switch viewModel.stockListUIState {
+            case .success(let stockViewModels) :
+                List(stockViewModels, id:\.symbol) { stockViewModel in
+                    StockRow(stockViewModel: stockViewModel)
+                }
+            case .error(let error):
+                ErrorView(error: error, retryAction: viewModel.reloadStocks)
+            case .loading:
+                // TODO: Should I show a spinner?
+                EmptyState()
+            case .noData:
+                // TODO: Empty state
+                EmptyState()
         }
     }
 }

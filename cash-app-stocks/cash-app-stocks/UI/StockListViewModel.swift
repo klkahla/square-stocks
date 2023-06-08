@@ -7,9 +7,15 @@
 
 import Foundation
 
+enum StockListUIState {
+    case success(stocks: [StockViewModel])
+    case error(Error)
+    case loading
+    case noData
+}
 
 @MainActor class ViewModel: ObservableObject {
-    @Published private(set) var stocks: [StockViewModel] = [StockViewModel]()
+    @Published private(set) var stockListUIState: StockListUIState = .loading
 
     init() {
         reloadStocks()
@@ -24,11 +30,25 @@ import Foundation
                 case .success(let stocks):
                     if let stocks = stocks {
                         DispatchQueue.main.async {
-                            self.stocks = stocks.map(StockViewModel.init)
+                            self.stockListUIState = .success(stocks: stocks.map(StockViewModel.init))
                         }
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
+                    switch error {
+                    case .noData:
+                        DispatchQueue.main.async {
+                            self.stockListUIState = .noData
+                        }
+                    case .badUrl:
+                        DispatchQueue.main.async {
+                            self.stockListUIState = .error(error)
+                        }
+                    default:
+                        DispatchQueue.main.async {
+                            self.stockListUIState = .error(error)
+                        }
+                    }
                 }
             }
         }
