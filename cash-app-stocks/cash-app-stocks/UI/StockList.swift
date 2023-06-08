@@ -21,8 +21,8 @@ struct StockList: View {
         
         Text("Stocks")
             .font(.title)
-        List(viewModel.stocks) { stock in
-            StockRow(stock: stock)
+        List(viewModel.stocks, id:\.symbol) { stockViewModel in
+            StockRow(stockViewModel: stockViewModel)
         }
     }
 }
