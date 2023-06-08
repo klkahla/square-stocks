@@ -24,7 +24,7 @@ enum StockListUIState {
     func reloadStocks() {
         // TODO: Move to dependency injection container
         let stockRepository = DefaultStockRepository(apiService: ApiService())
-        Task {
+        Task.detached { // Task was blocking main thread -> https://stackoverflow.com/questions/71837201/task-blocks-main-thread-when-calling-async-function-inside
             await stockRepository.loadStocks() { result in
                 switch result {
                 case .success(let stocks):

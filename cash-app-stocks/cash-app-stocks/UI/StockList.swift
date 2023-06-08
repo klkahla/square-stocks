@@ -13,12 +13,11 @@ struct StockList: View {
     var body: some View {
         // TODO:
         // a. Dependency injection container
-        // 1. Loading & error (with retry button) states
         // 1a. Empty state
         // 2. Tests
         // 3. Format currency cents to dollars.cents with currency symbol
         
-        
+        // TODO: Move to the nav bar
         Text("Stocks")
             .font(.title)
         switch viewModel.stockListUIState {
@@ -29,8 +28,8 @@ struct StockList: View {
             case .error(let error):
                 ErrorView(error: error, retryAction: viewModel.reloadStocks)
             case .loading:
-                // TODO: Should I show a spinner?
-                EmptyState()
+                ActivityIndicator()
+                .frame(width: 200, height: 200)
             case .noData:
                 // TODO: Empty state
                 EmptyState()
