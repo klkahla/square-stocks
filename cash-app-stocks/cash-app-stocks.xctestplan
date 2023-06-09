@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "6917594E-D0D5-4A04-A8D9-6E90DF0F40C2",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:cash-app-stocks.xcodeproj",
+      "identifier" : "73C148962A2ED84C000A2CC6",
+      "name" : "cash-app-stocks"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:cash-app-stocks.xcodeproj",
+        "identifier" : "73C148A62A2ED84D000A2CC6",
+        "name" : "cash-app-stocksTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:cash-app-stocks.xcodeproj",
+        "identifier" : "73C148B02A2ED84D000A2CC6",
+        "name" : "cash-app-stocksUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

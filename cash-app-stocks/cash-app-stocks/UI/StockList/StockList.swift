@@ -13,12 +13,8 @@ struct StockList: View {
     var body: some View {
         // TODO:
         // a. Dependency injection container
-        // 2. Tests
         // 3. Format currency cents to dollars.cents with currency symbol
-        
-        // TODO: Move to the nav bar
-        Text("Stocks")
-            .font(.title)
+
         switch viewModel.stockListUIState {
             case .success(let stockViewModels) :
                 List(stockViewModels, id:\.symbol) { stockViewModel in
