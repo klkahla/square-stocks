@@ -31,8 +31,7 @@ struct StockList: View {
                 ActivityIndicator()
                 .frame(width: 200, height: 200)
             case .noData:
-                // TODO: Empty state
-                EmptyState()
+            EmptyState(retryAction: viewModel.reloadStocks)
         }
     }
 }

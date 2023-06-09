@@ -19,7 +19,9 @@ struct ErrorView: View {
                 .font(.callout)
                 .multilineTextAlignment(.center)
                 .padding(.bottom, 40).padding()
-            Button(action: retryAction, label: { Text("Retry").bold() })
+            Button(action: retryAction, label: {
+                Text("Retry").bold()
+            })
         }
     }
 }

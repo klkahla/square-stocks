@@ -29,21 +29,19 @@ enum StockListUIState {
                 switch result {
                 case .success(let stocks):
                     if let stocks = stocks {
-                        DispatchQueue.main.async {
-                            self.stockListUIState = .success(stocks: stocks.map(StockViewModel.init))
+                        if stocks.isEmpty {
+                            DispatchQueue.main.async {
+                                self.stockListUIState = .noData
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                self.stockListUIState = .success(stocks: stocks.map(StockViewModel.init))
+                            }
                         }
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
                     switch error {
-                    case .noData:
-                        DispatchQueue.main.async {
-                            self.stockListUIState = .noData
-                        }
-                    case .badUrl:
-                        DispatchQueue.main.async {
-                            self.stockListUIState = .error(error)
-                        }
                     default:
                         DispatchQueue.main.async {
                             self.stockListUIState = .error(error)

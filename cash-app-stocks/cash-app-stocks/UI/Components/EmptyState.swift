@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct EmptyState: View {
+    let retryAction: () -> Void
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("No stocks available")
+                .font(.title)
+                .padding(.bottom, 40).padding()
+            Button(action: retryAction, label: {
+                Text("Retry").bold()
+            })
+        }
     }
 }
 
 struct EmptyState_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyState()
+        EmptyState(retryAction: { })
     }
 }
