@@ -1,5 +1,5 @@
 //
-//  WebRepository.swift
+//  StockRepository.swift
 //  cash-app-stocks
 //
 //  Created by Katy Kahla on 6/6/23.

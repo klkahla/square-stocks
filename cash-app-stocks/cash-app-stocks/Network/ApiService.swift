@@ -14,13 +14,19 @@ enum NetworkError: Error {
 }
 
 class ApiService {
+    let baseUrl = "https://storage.googleapis.com/cash-homework/cash-stocks-api"
+    var urlSession: URLSession
+    
+    init(urlSession: URLSession = .shared) {
+        self.urlSession = urlSession
+    }
     
     func getStocks(completion: @escaping(Result<[Stock]?, NetworkError>) -> Void) async {
-        guard let url = URL(string: "https://storage.googleapis.com/cash-homework/cash-stocks-api/portfolio.json") else {
+        guard let url = URL(string: "\(baseUrl)/portfolio.json") else {
             return completion(.failure(.badUrl))
         }
         do {
-            let (data, _) = try await URLSession.shared.data(from: url)
+            let (data, _) = try await urlSession.data(from: url)
             
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase

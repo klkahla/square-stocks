@@ -22,6 +22,9 @@
 		73C148DB2A327200000A2CC6 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C148DA2A327200000A2CC6 /* ErrorView.swift */; };
 		73C148DD2A327220000A2CC6 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C148DC2A327220000A2CC6 /* EmptyState.swift */; };
 		73C148E02A327319000A2CC6 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C148DF2A327319000A2CC6 /* ActivityIndicator.swift */; };
+		73C148E22A32D138000A2CC6 /* StockListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C148E12A32D138000A2CC6 /* StockListViewModelTests.swift */; };
+		73E564342A32D6A8007AC498 /* StockRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E564332A32D6A8007AC498 /* StockRepositoryTests.swift */; };
+		73E564392A32DDFC007AC498 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E564382A32DDFC007AC498 /* MockURLProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		73C148DA2A327200000A2CC6 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		73C148DC2A327220000A2CC6 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		73C148DF2A327319000A2CC6 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		73C148E12A32D138000A2CC6 /* StockListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListViewModelTests.swift; sourceTree = "<group>"; };
+		73E564332A32D6A8007AC498 /* StockRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockRepositoryTests.swift; sourceTree = "<group>"; };
+		73E564382A32DDFC007AC498 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +138,9 @@
 		73C148AA2A2ED84D000A2CC6 /* cash-app-stocksTests */ = {
 			isa = PBXGroup;
 			children = (
+				73C148E52A32D2CF000A2CC6 /* Mocks */,
+				73E564362A32D80D007AC498 /* Network */,
+				73E564372A32D814007AC498 /* UI */,
 				73C148AB2A2ED84D000A2CC6 /* cash_app_stocksTests.swift */,
 			);
 			path = "cash-app-stocksTests";
@@ -150,9 +159,8 @@
 			isa = PBXGroup;
 			children = (
 				73C148DE2A327303000A2CC6 /* Components */,
-				73C1489C2A2ED84C000A2CC6 /* StockList.swift */,
+				73E564352A32D7A7007AC498 /* StockList */,
 				73C148C82A2F925F000A2CC6 /* StockRow.swift */,
-				73C148CD2A2FACAA000A2CC6 /* StockListViewModel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -189,6 +197,39 @@
 				73C148DF2A327319000A2CC6 /* ActivityIndicator.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		73C148E52A32D2CF000A2CC6 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				73E564382A32DDFC007AC498 /* MockURLProtocol.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		73E564352A32D7A7007AC498 /* StockList */ = {
+			isa = PBXGroup;
+			children = (
+				73C1489C2A2ED84C000A2CC6 /* StockList.swift */,
+				73C148CD2A2FACAA000A2CC6 /* StockListViewModel.swift */,
+			);
+			path = StockList;
+			sourceTree = "<group>";
+		};
+		73E564362A32D80D007AC498 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				73E564332A32D6A8007AC498 /* StockRepositoryTests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		73E564372A32D814007AC498 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				73C148E12A32D138000A2CC6 /* StockListViewModelTests.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,7 +379,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73C148E22A32D138000A2CC6 /* StockListViewModelTests.swift in Sources */,
+				73E564342A32D6A8007AC498 /* StockRepositoryTests.swift in Sources */,
 				73C148AC2A2ED84D000A2CC6 /* cash_app_stocksTests.swift in Sources */,
+				73E564392A32DDFC007AC498 /* MockURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
