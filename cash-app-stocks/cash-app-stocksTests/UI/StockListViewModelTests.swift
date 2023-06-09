@@ -18,10 +18,10 @@ final class StockListViewModelTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testStockViewModelProperties() {
+    func testStockRowViewModelProperties() {
         // Arrange
         let stock = Stock(ticker: "AAPL", name: "Apple Inc.", currency: "USD", currentPriceCents: 9999, currentPriceTimestamp: 12390812)
-        let stockViewModel = StockViewModel(stock: stock)
+        let stockViewModel = StockRowViewModel(stock: stock)
         
         // Act
         let symbol = stockViewModel.symbol

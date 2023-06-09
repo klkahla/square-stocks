@@ -16,7 +16,7 @@ struct StockDetail: View {
         let stockDetailViewModel = StockDetailViewModel(stock: stock)
 
         VStack (spacing: 16) {
-            StockRow(symbol: stockDetailViewModel.symbol, description: stockDetailViewModel.description, tradingPrice: stockDetailViewModel.tradingPrice)
+            StockRow(stock: stock)
             
             if stock.quantity != nil {
                 PortfolioDetails(quantity: stockDetailViewModel.quantity, currentValue: stockDetailViewModel.currentValue)

@@ -17,11 +17,11 @@ struct StockList: View {
 
         switch viewModel.stockListUIState {
             case .success(let stockViewModels) :
-                List(stockViewModels, id:\.symbol) { stockViewModel in
+            List(stockViewModels, id:\.stock.id) { stockViewModel in
                     NavigationLink {
                         StockDetail(stock: stockViewModel.stock)
                     } label: {
-                        StockRow(symbol: stockViewModel.symbol, description: stockViewModel.description, tradingPrice: stockViewModel.tradingPrice)
+                        StockRow(stock: stockViewModel.stock)
                     }
                 }
             case .error(let error):
