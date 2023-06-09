@@ -9,9 +9,15 @@ import XCTest
 @testable import cash_app_stocks
 
 final class StockRepositoryTests: XCTestCase {
+    
+    var urlSession: URLSession!
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        let config = URLSessionConfiguration.ephemeral
+        config.protocolClasses = [MockURLProtocol.self]
+        URLProtocol.registerClass(MockURLProtocol.self)
+        urlSession = URLSession(configuration: config)
     }
 
     override func tearDownWithError() throws {
@@ -19,12 +25,18 @@ final class StockRepositoryTests: XCTestCase {
     }
 
     func testStockRepository_WhenGivenSuccessfulResponse_ReturnsSuccess() async {
-        let config = URLSessionConfiguration.ephemeral
-        config.protocolClasses = [MockURLProtocol.self]
-        URLProtocol.registerClass(MockURLProtocol.self)
-        let urlSession = URLSession(configuration: config)
         let jsonString = "{\"stocks\":[{\"ticker\":\"APPL\",\"name\":\"Apple\",\"currency\":\"USD\",\"current_price_cents\":318157,\"quantity\":5,\"current_price_timestamp\":1681845832}]}"
-        MockURLProtocol.stubResponseData = jsonString.data(using: .utf8)
+        let data = jsonString.data(using: .utf8)
+        
+        MockURLProtocol.requestHandler = { request in
+            guard let url = request.url else {
+                XCTFail("Unable to get url")
+                throw NetworkError.badUrl
+            }
+            
+            let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, data)
+        }
         
         let apiService = ApiService(urlSession: urlSession)
         let stockRepository = DefaultStockRepository(apiService: apiService)
@@ -46,4 +58,85 @@ final class StockRepositoryTests: XCTestCase {
         }
     }
 
+    func testStockRepository_WhenGivenSuccessfulResponse_ReturnsSuccess_EmptyResponse() async {
+        let jsonString = "{\"stocks\":[]}"
+        let data = jsonString.data(using: .utf8)
+        
+        MockURLProtocol.requestHandler = { request in
+            guard let url = request.url else {
+                XCTFail("Unable to get url")
+                throw NetworkError.badUrl
+            }
+            
+            let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, data)
+        }
+
+        let apiService = ApiService(urlSession: urlSession)
+        let stockRepository = DefaultStockRepository(apiService: apiService)
+
+        await stockRepository.loadStocks { result in
+
+            switch result {
+                case .success(let stocks):
+
+                XCTAssertEqual(stocks?.count, 0)
+                default:
+                    XCTFail("Empty body stock response not received")
+            }
+        }
+    }
+
+    func testStockRepository_ReturnsNetworkError_ImproperlyFormattedData() async {
+        let data = Data()
+        
+        MockURLProtocol.requestHandler = { request in
+            guard let url = request.url else {
+                XCTFail("Unable to get url")
+                throw NetworkError.badUrl
+            }
+            
+            let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, data)
+        }
+
+        let apiService = ApiService(urlSession: urlSession)
+        let stockRepository = DefaultStockRepository(apiService: apiService)
+
+        await stockRepository.loadStocks { result in
+            switch result {
+                case .failure(let error):
+                    XCTAssertEqual(error, NetworkError.decodingError, "Decoding error was expected")
+                default:
+                    XCTFail("No stocks returned")
+            }
+        }
+    }
+    
+    func testStockRepository_ReturnsNetworkError_MalformedData() async {
+        let jsonString = "{\"stocks\":[{\"ticker\":\"APPL\",\"name\":\"Apple\",\"currency\":\"USD\",\"current_price_cents\":318157,\"quantity\":5,\"current_price_timestamp\":1681845832}]}malformedmalformed"
+        let data = jsonString.data(using: .utf8)
+        
+        MockURLProtocol.requestHandler = { request in
+            guard let url = request.url else {
+                XCTFail("Unable to get url")
+                throw NetworkError.badUrl
+            }
+            
+            let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (response, data)
+        }
+
+        let apiService = ApiService(urlSession: urlSession)
+        let stockRepository = DefaultStockRepository(apiService: apiService)
+
+        await stockRepository.loadStocks { result in
+            switch result {
+                case .failure(let error):
+                    XCTAssertEqual(error, NetworkError.decodingError, "Decoding error was expected")
+                default:
+                    XCTFail("No stocks returned")
+            }
+        }
+    }    
 }
