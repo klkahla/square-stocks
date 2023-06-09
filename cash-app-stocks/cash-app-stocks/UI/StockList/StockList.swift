@@ -18,7 +18,11 @@ struct StockList: View {
         switch viewModel.stockListUIState {
             case .success(let stockViewModels) :
                 List(stockViewModels, id:\.symbol) { stockViewModel in
-                    StockRow(symbol: stockViewModel.symbol, description: stockViewModel.description, tradingPrice: stockViewModel.tradingPrice)
+                    NavigationLink {
+                        StockDetail(stock: stockViewModel.stock)
+                    } label: {
+                        StockRow(symbol: stockViewModel.symbol, description: stockViewModel.description, tradingPrice: stockViewModel.tradingPrice)
+                    }
                 }
             case .error(let error):
                 ErrorView(error: error, retryAction: viewModel.reloadStocks)
