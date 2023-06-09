@@ -26,6 +26,7 @@ class ApiService {
             return completion(.failure(.badUrl))
         }
         do {
+            // NOTE: This should be checking for an error code and not just assuming 200 status
             let (data, _) = try await urlSession.data(from: url)
             
             let decoder = JSONDecoder()

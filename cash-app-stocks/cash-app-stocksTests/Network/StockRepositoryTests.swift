@@ -35,7 +35,7 @@ final class StockRepositoryTests: XCTestCase {
             }
             
             let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            return (response, data)
+            return (response, data, nil)
         }
         
         let apiService = ApiService(urlSession: urlSession)
@@ -69,7 +69,7 @@ final class StockRepositoryTests: XCTestCase {
             }
             
             let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            return (response, data)
+            return (response, data, nil)
         }
 
         let apiService = ApiService(urlSession: urlSession)
@@ -97,7 +97,7 @@ final class StockRepositoryTests: XCTestCase {
             }
             
             let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            return (response, data)
+            return (response, data, nil)
         }
 
         let apiService = ApiService(urlSession: urlSession)
@@ -124,7 +124,7 @@ final class StockRepositoryTests: XCTestCase {
             }
             
             let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
-            return (response, data)
+            return (response, data, nil)
         }
 
         let apiService = ApiService(urlSession: urlSession)
@@ -138,5 +138,5 @@ final class StockRepositoryTests: XCTestCase {
                     XCTFail("No stocks returned")
             }
         }
-    }    
+    }
 }
