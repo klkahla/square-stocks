@@ -8,21 +8,23 @@
 import SwiftUI
 
 struct StockRow: View {
-    var stockViewModel: StockViewModel
+    var symbol: String
+    var description: String
+    var tradingPrice: String
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(stockViewModel.symbol)
+                Text(symbol)
                     .font(.title)
                     .fontWeight(.bold)
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
-                Text(stockViewModel.description)
+                Text(description)
                     .font(.body)
             }
             Spacer()
             VStack {
-                Text(stockViewModel.tradingPrice)
+                Text(tradingPrice)
                     .font(.body)
             }
         }
@@ -31,6 +33,6 @@ struct StockRow: View {
 
 struct StockRow_Previews: PreviewProvider {
     static var previews: some View {
-        StockRow(stockViewModel: StockViewModel(stock: Stock(ticker: "^GSPC", name: "S&P 500", currency: "USD", currentPriceCents: 318000, quantity: 5, currentPriceTimestamp: 1681845832)))
+        StockRow(symbol: "NASDAQ", description: "Lorem ipsum", tradingPrice: "$12,523.49")
     }
 }

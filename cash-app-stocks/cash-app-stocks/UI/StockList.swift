@@ -13,7 +13,6 @@ struct StockList: View {
     var body: some View {
         // TODO:
         // a. Dependency injection container
-        // 1a. Empty state
         // 2. Tests
         // 3. Format currency cents to dollars.cents with currency symbol
         
@@ -23,7 +22,7 @@ struct StockList: View {
         switch viewModel.stockListUIState {
             case .success(let stockViewModels) :
                 List(stockViewModels, id:\.symbol) { stockViewModel in
-                    StockRow(stockViewModel: stockViewModel)
+                    StockRow(symbol: stockViewModel.symbol, description: stockViewModel.description, tradingPrice: stockViewModel.tradingPrice)
                 }
             case .error(let error):
                 ErrorView(error: error, retryAction: viewModel.reloadStocks)
